@@ -1,0 +1,45 @@
+<div class="container" >
+    <div class="row">
+      <div class="col s5 offset-s3" >
+        <div class="nav-wrapper card">
+            <form>
+              <div class="input-field ">
+                <input id="search" autofocus type="search" (keyup.enter)="GetImages()" 
+                [(ngModel)]="query" name ="search" placeholder="Search an image" required>
+              </div>
+            </form>
+        </div>
+        
+      </div>
+      <div class="col s2" >
+        <button class="btn btn-large waves-effect waves-light fab-color additional " (click) = "GetImages();" >
+          <i class="material-icons">search</i>
+        </button>
+      </div>
+
+    </div>
+</div>
+<div class="custom-container" >
+    <div *ngIf="showProgress && !images" > 
+        <div class="preloader-wrapper big-c active custom-wrapper">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf ="images" >
+        <div class="row" >
+            <div *ngFor="let item of images" >
+                <a href="{{item.ou}}" target = "_blank" ><img src="{{item.tu}}" alt="{{item.pt}}" ></a>
+            </div>
+        </div>
+    </div>
+</div>

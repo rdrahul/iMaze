@@ -1,0 +1,12 @@
+node_modules
+docs
+.vscode
+npm-debug.log
+typings
+build
+ 
+
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
