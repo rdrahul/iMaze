@@ -18,7 +18,7 @@ var scrape_images = function(html , selector , callback ){
                 var count = 0;
                 img_objs.forEach( function(img_object){
                     image_info = JSON.parse(img_object["img_info"]);
-                    if (count < 17 && image_info.ity != '' && image_info.ity != undefined && image_info.ity != 'gif' ) {
+                    if (count < 2 && image_info.ity != '' && image_info.ity != undefined && image_info.ity != 'gif' ) {
                         //fetch image info objects and save in images
                         image_info.count = count;
                         images.push(image_info);

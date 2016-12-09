@@ -3,11 +3,13 @@ var router = express.Router();
 var request = require('request');
 var path =  require('path');
 var fs = require('fs');
+
+//local modules
 var Config = require('../config'); 
 var Image = require('../models/image');
 var ScrapeImages = require('../core/scraper');
 var DownloadImages = require('../core/storage');
-
+var UploadToS3 = require('../core/uploads3');
 
 //function to save all the optimioze images to the database
 var SaveToDatabase = function(err, query ,modified_images){
@@ -20,9 +22,10 @@ var SaveToDatabase = function(err, query ,modified_images){
                         modified_images.forEach(function(image){
                             if (image.newfilename != "" && image.newfilename != undefined){
                                 var filename = image.newfilename.split('/');
-                                filename = path.join ( Config['CLIENT_IMAGE_PREFIX'] ,query, filename[ filename.length -1] );
+                                filename = path.join ( Config['CLIENT_IMAGE_PREFIX'] ,query, filename[ filename.length - 1] );
                                 console.log(filename);
                                 image_paths.push( filename );
+                                UploadToS3( image.newfilename , filename );
                             }
                             //console.log("removing the files - " , image.filename);
                             

@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //connect to database
 const PORT = process.env.PORT || config['PORT'] || 8000 ;
-const DB = config['MONGO_URL']['production'];
+const DB = config['MONGO_URL']['development'];
 mongoose.connect(DB , function(err){
     if (err){
         return err;
