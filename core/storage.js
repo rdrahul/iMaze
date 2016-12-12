@@ -7,10 +7,11 @@ var ImageOptimizer = require('./optimizer');
 var needle = require('needle');
 var IMAGE_STORAGE = config['IMAGE_STORAGE'] ;
 
-
+//extracts  the extension from an image
 var ExtractExtension = function(image){
         return image.ity;
 }
+
 //function to dowload a file and save to hard disk
 var download = function(url, filename, callback){
     console.log("dowloading image  -- ", filename);
@@ -26,7 +27,12 @@ var download = function(url, filename, callback){
 
 
 
-//asynchronously  download array of images
+/**
+ * DownloadImages - downloads the images and optimizes the asynchronously  
+ * params images : tne array of images to dowload and optimize
+ *        query : the name if the search query 
+ *        down_image_callback : callback after images are dowloaded.
+ */
 var DownloadImages = function( images, query , down_image_callback ){
 
     
@@ -35,6 +41,9 @@ var DownloadImages = function( images, query , down_image_callback ){
     //create the directory if doesn't exists'
     if( !fs.existsSync(dir)){
         fs.mkdirSync(dir);
+    }
+    else{
+        return;
     }
 
 
@@ -66,6 +75,7 @@ var DownloadImages = function( images, query , down_image_callback ){
                 async_callback(err, null);
             }
             else{
+                // optimize the images
                    ImageOptimizer(image); 
                    async_callback(null, image);
                } 

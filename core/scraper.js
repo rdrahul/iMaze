@@ -1,9 +1,12 @@
 var xray = require('x-ray');
 var xRay = xray();
 
-
-//scrape images from a given url
-var scrape_images = function(html , selector , callback ){
+/*
+ * ScrapeImages - scrapes the images information from the given html on basis of selector provided
+ * html - the html from where to parse the info
+ * selector - a string to select an html element
+ */
+var ScrapeImages = function(html , selector , callback ){
     
     //use x-ray library to scrape images, saves them in an object ans returns that object
     return xRay(html, selector ,[{
@@ -29,7 +32,6 @@ var scrape_images = function(html , selector , callback ){
                 callback(null, images);
             }
     });
-    
 }
 
-module.exports = scrape_images;
+module.exports = ScrapeImages;

@@ -1,8 +1,13 @@
 var sharp  = require('sharp');
 var fs = require('fs');
-var image_optimizer = function( image  ){
-    //console.log( " compressing image .." + image.filename );
+
+/* ImageOptimizer 
+    params - image : image to be otimized
+    takes an image optimizes it by reducing its quality then converting it to webp 
+*/
+var ImageOptimizer = function( image  ){
     
+    //once the image has been optimized do this
     var callback = function(err, info){
         if ( !err){
             image.newfilename = save_name;
@@ -41,4 +46,4 @@ var image_optimizer = function( image  ){
     .toFile( save_name,callback);
 }
 
-module.exports = image_optimizer;
+module.exports = ImageOptimizer;
